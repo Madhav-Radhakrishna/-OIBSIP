@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoAuth — Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="dash-page">
+    <header class="dash-header">
+      <div class="dash-logo">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">Neo<span style="color:var(--accent)">Auth</span></div>
+      </div>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </header>
+
+    <div class="welcome">Good to see you, <span id="user-name">there</span> 👋</div>
+    <p class="welcome-sub">Here's your session overview</p>
+
+    <div class="grid">
+      <div class="widget">
+        <div class="widget-label">Status</div>
+        <div><span class="badge green">● Authenticated</span></div>
+        <div class="widget-sub" style="margin-top:8px">Session active</div>
+      </div>
+      <div class="widget">
+        <div class="widget-label">Signed In At</div>
+        <div class="widget-value" id="d-login">—</div>
+        <div class="widget-sub" id="d-date">—</div>
+      </div>
+      <div class="widget">
+        <div class="widget-label">Live Clock</div>
+        <div class="widget-value" id="d-clock">—</div>
+        <div class="widget-sub">Local time</div>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <div class="avatar" id="d-avatar">A</div>
+      <div class="profile-info">
+        <h3 id="d-name">—</h3>
+        <p id="d-username">—</p>
+        <p id="d-email">—</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>initDashboard();</script>
+</body>
+</html>

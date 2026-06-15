@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeoAuth — Create Account</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="bg">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="page">
+    <div class="card">
+      <div class="logo">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">Neo<span>Auth</span></div>
+      </div>
+
+      <h1>Create account</h1>
+      <p class="sub">Join NeoAuth — it only takes a minute</p>
+
+      <div class="field">
+        <label>Full Name</label>
+        <input id="name" type="text" placeholder="Alex Johnson"/>
+      </div>
+
+      <div class="field">
+        <label>Username</label>
+        <input id="username" type="text" placeholder="alexj"/>
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="alex@example.com"/>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="pwd" type="password" placeholder="Min. 6 characters" oninput="updateStrength(this.value)"/>
+        <span class="eye" onclick="togglePwd('pwd')">👁</span>
+        <div class="strength-bar" id="strength">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Confirm Password</label>
+        <input id="cpwd" type="password" placeholder="Re-enter password"/>
+        <span class="eye" onclick="togglePwd('cpwd')">👁</span>
+      </div>
+
+      <button class="btn" onclick="signup()">Create Account</button>
+
+      <div class="footer-link">
+        Already have an account? <a href="index.html" class="link">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
