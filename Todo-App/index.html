@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZenTask — Mindful Productivity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-kanji">禅</span>
+      <div>
+        <div class="brand-name">ZenTask</div>
+        <div class="brand-sub">mindful productivity</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-view="all">
+        <span class="nav-icon">◈</span>
+        <span>All Tasks</span>
+      </a>
+      <a href="#" class="nav-item" data-view="active">
+        <span class="nav-icon">◯</span>
+        <span>Active</span>
+      </a>
+      <a href="#" class="nav-item" data-view="completed">
+        <span class="nav-icon">◉</span>
+        <span>Completed</span>
+      </a>
+      <a href="#" class="nav-item" data-view="focus">
+        <span class="nav-icon">◎</span>
+        <span>Focus Mode</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-stats">
+      <div class="stat-row">
+        <span class="stat-label">Total</span>
+        <span class="stat-val" id="stat-total">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Done</span>
+        <span class="stat-val" id="stat-done">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Remaining</span>
+        <span class="stat-val" id="stat-remaining">0</span>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-bottom">
+      <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+        <span id="themeIcon">☽</span> Dark Mode
+      </button>
+      <button class="nav-item settings-btn" data-view="settings">
+        <span class="nav-icon">⚙</span>
+        <span>Settings</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <span class="brand-name">ZenTask</span>
+    <button class="theme-toggle-sm" id="themeToggleSm">☽</button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="today-date" id="todayDate"></div>
+        <div class="zen-quote" id="zenQuote"></div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search tasks…" autocomplete="off"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS SECTION -->
+    <section class="progress-section" id="progressSection">
+      <div class="progress-circle-wrap">
+        <svg class="progress-ring" viewBox="0 0 100 100">
+          <circle class="ring-bg" cx="50" cy="50" r="40"/>
+          <circle class="ring-fill" id="ringFill" cx="50" cy="50" r="40"
+            stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+        </svg>
+        <div class="progress-center">
+          <div class="progress-pct" id="progressPct">0%</div>
+          <div class="progress-label">complete</div>
+        </div>
+      </div>
+      <div class="progress-text">
+        <div class="progress-heading">Today's Journey</div>
+        <p class="progress-desc" id="progressDesc">Begin with a single task. The path unfolds.</p>
+      </div>
+    </section>
+
+    <!-- DAILY FOCUS -->
+    <section class="focus-banner" id="focusBanner">
+      <div class="focus-label">✦ Daily Focus</div>
+      <div class="focus-task" id="focusTask">No focus task set. Mark a high-priority task to pin it here.</div>
+    </section>
+
+    <!-- ADD TASK FORM -->
+    <section class="add-section">
+      <div class="add-card" id="addCard">
+        <div class="add-top">
+          <input type="text" id="taskInput" class="task-input" placeholder="Add a new task…" maxlength="120" autocomplete="off"/>
+          <button class="add-btn" id="addBtn" title="Add task (Enter)">＋</button>
+        </div>
+        <div class="add-meta">
+          <select id="prioritySelect" class="meta-select">
+            <option value="low">Low priority</option>
+            <option value="medium" selected>Medium priority</option>
+            <option value="high">High priority</option>
+          </select>
+          <select id="categorySelect" class="meta-select">
+            <option value="general">General</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="health">Health</option>
+            <option value="learning">Learning</option>
+          </select>
+          <input type="date" id="dueDateInput" class="meta-select" title="Due date"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-chips">
+        <button class="chip active" data-priority="all">All</button>
+        <button class="chip" data-priority="high">High</button>
+        <button class="chip" data-priority="medium">Medium</button>
+        <button class="chip" data-priority="low">Low</button>
+      </div>
+      <div class="filter-right">
+        <select id="sortSelect" class="meta-select sm">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="priority">By priority</option>
+          <option value="due">By due date</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TASK LIST -->
+    <section class="task-section">
+      <div class="task-list" id="taskList">
+        <!-- Tasks rendered by JS -->
+      </div>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <div class="empty-kanji">無</div>
+        <div class="empty-title">Emptiness is potential</div>
+        <div class="empty-sub">Add your first task to begin the journey.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-overlay" id="settingsOverlay"></div>
+  <aside class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+      <h2>Settings</h2>
+      <button class="close-settings" id="closeSettings">✕</button>
+    </div>
+    <div class="settings-body">
+      <div class="settings-group">
+        <div class="settings-label">Clear all completed tasks</div>
+        <button class="settings-btn-action danger" id="clearCompleted">Clear Completed</button>
+      </div>
+      <div class="settings-group">
+        <div class="settings-label">Reset all tasks</div>
+        <button class="settings-btn-action danger" id="resetAll">Reset Everything</button>
+      </div>
+      <div class="settings-group">
+        <div class="settings-label">Keyboard shortcuts</div>
+        <div class="shortcuts">
+          <div class="shortcut-row"><kbd>Enter</kbd> Add task</div>
+          <div class="shortcut-row"><kbd>Ctrl+F</kbd> Focus search</div>
+          <div class="shortcut-row"><kbd>Ctrl+D</kbd> Toggle dark mode</div>
+          <div class="shortcut-row"><kbd>Esc</kbd> Close panels</div>
+        </div>
+      </div>
+      <div class="settings-group">
+        <div class="settings-label">About ZenTask</div>
+        <div class="about-text">Version 1.0 · Built with intention.<br/>Find clarity in simplicity.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- EDIT MODAL -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="edit-modal" id="editModal">
+    <div class="modal-header">
+      <h3>Edit Task</h3>
+      <button class="close-modal" id="closeModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="text" id="editInput" class="task-input" maxlength="120" placeholder="Task name…"/>
+      <div class="add-meta" style="margin-top:1rem">
+        <select id="editPriority" class="meta-select">
+          <option value="low">Low priority</option>
+          <option value="medium">Medium priority</option>
+          <option value="high">High priority</option>
+        </select>
+        <select id="editCategory" class="meta-select">
+          <option value="general">General</option>
+          <option value="work">Work</option>
+          <option value="personal">Personal</option>
+          <option value="health">Health</option>
+          <option value="learning">Learning</option>
+        </select>
+        <input type="date" id="editDue" class="meta-select"/>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="cancelEdit">Cancel</button>
+      <button class="btn-save" id="saveEdit">Save Changes</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
